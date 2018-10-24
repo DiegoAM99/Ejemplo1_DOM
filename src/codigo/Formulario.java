@@ -11,16 +11,16 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author xp
+ * @author Diego Álvarez
  */
 public class Formulario extends javax.swing.JFrame {
-    JFileChooser seleccionado = new JFileChooser();
-    File fichero;
+        Dom getDom;
     /**
      * Creates new form Formulario
      */
     public Formulario() {
         initComponents();
+        getDom = new Dom();
     }
 private File dialogoSeleccionTipoRecurso(){
     File fichero=null;
@@ -78,7 +78,11 @@ private File dialogoSeleccionTipoRecurso(){
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTextField1.setText("jTextField1");
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
 
         jButton1.setText("Mostrar DOM");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -160,9 +164,7 @@ private File dialogoSeleccionTipoRecurso(){
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(2, 2, 2)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextFieldLibro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(12, 12, 12)
                         .addComponent(jButton5)
@@ -171,7 +173,9 @@ private File dialogoSeleccionTipoRecurso(){
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jTextFieldTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jTextFieldAutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jTextFieldAutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(33, 33, 33)
+                        .addComponent(jTextFieldLibro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(29, Short.MAX_VALUE))
         );
 
@@ -183,22 +187,23 @@ private File dialogoSeleccionTipoRecurso(){
     }//GEN-LAST:event_jMenu1MousePressed
 
     private void jMenuItem1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItem1MousePressed
-        if(seleccionado.showDialog(null, "ABRIR ARCHIVO") == JFileChooser.APPROVE_OPTION){
-            fichero = seleccionado.getSelectedFile();
-            if(fichero.canRead()){
-                if(fichero.getName().endsWith("txt")){
-                    //String contenido = gestion.AbrirATexto(fichero);
-                    //jTextArea1.setText(contenido);
-                }else{
-                        JOptionPane.showMessageDialog(null, "Por favor seleccione un archivo de texto.");
+        File ficheroXML;
+        ficheroXML = dialogoSeleccionTipoRecurso();
+        if(getDom.abrir_XML_DOM(ficheroXML) == 0){
+           
+        }
+        else{
+                        
                     }
-           }
-  }
     }//GEN-LAST:event_jMenuItem1MousePressed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
 
     /**
      * @param args the command line arguments
