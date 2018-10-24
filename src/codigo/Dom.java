@@ -86,7 +86,7 @@ public class Dom {
     
     
     
-    public int annadirDOM(Document doc, String titulo, String autor, String anno){
+    public int añadirDOM(Document doc, String titulo, String autor, String anno){
         try{
             Node ntitulo = doc.createElement("Titulo");                         //Se crea un nodo tipo element con nombre 'titulo'(<Titulo>)
             Node ntitulo_text=doc.createTextNode(titulo);                       //Se crea un nodo tipo texto con el titulo del libro
