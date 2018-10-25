@@ -5,6 +5,7 @@
  */
 package codigo;
 
+import java.io.File;
 import javax.xml.parsers.SAXParserFactory;
 import jdk.internal.org.xml.sax.helpers.DefaultHandler;
 
@@ -13,7 +14,7 @@ import jdk.internal.org.xml.sax.helpers.DefaultHandler;
  * @author Diego Álvarez
  */
 public class Sax {
-    public int abrir_XML_SAX(File fichero){
+    public int abrir_XML_SAX(File fichero){                 //Se crea un objeto SAXParser para interpretar el documento XML.
         try{
             SAXParserFactory factory = SAXParserFactory.newInstance();
             parser = factory.newSAXParser();
