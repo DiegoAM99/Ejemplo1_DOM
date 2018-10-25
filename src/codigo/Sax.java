@@ -5,10 +5,30 @@
  */
 package codigo;
 
+import java.io.File;
+import javax.xml.parsers.SAXParserFactory;
+import jdk.internal.org.xml.sax.helpers.DefaultHandler;
+
 /**
  *
  * @author Diego Álvarez
  */
 public class Sax {
+    public int abrir_XML_SAX(File fichero){
+        try{
+            SAXParserFactory factory = SAXParserFactory.newInstance();
+//            parser = factory.newSAXParser();
+//            sh = new ManejadorSAX();
+            File ficheroXML = fichero;
+            return 0;
+        }
+        catch(Exception e){
+            e.printStackTrace();
+            return -1;
+        }
+    }
+}
+
+class ManejadorSAX extends DefaultHandler{
     
 }

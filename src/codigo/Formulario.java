@@ -201,7 +201,7 @@ private File dialogoSeleccionTipoRecurso(){
         File ficheroXML;
         ficheroXML = dialogoSeleccionTipoRecurso();
         if(getDom.abrir_XML_DOM(ficheroXML) == 0){
-           
+          
         }
         else{
                         
