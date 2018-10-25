@@ -15,12 +15,14 @@ import javax.swing.JOptionPane;
  */
 public class Formulario extends javax.swing.JFrame {
         Dom getDom;
+        Sax getSax;
     /**
      * Creates new form Formulario
      */
     public Formulario() {
         initComponents();
         getDom = new Dom();
+        getSax = new Sax();
     }
 private File dialogoSeleccionTipoRecurso(){
     File fichero=null;
@@ -58,6 +60,7 @@ private File dialogoSeleccionTipoRecurso(){
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
 
         javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
         jDialog1.getContentPane().setLayout(jDialog1Layout);
@@ -121,6 +124,14 @@ private File dialogoSeleccionTipoRecurso(){
             }
         });
         jMenu1.add(jMenuItem1);
+
+        jMenuItem2.setText("Abrir SAX");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem2);
 
         jMenuBar1.add(jMenu1);
 
@@ -205,6 +216,17 @@ private File dialogoSeleccionTipoRecurso(){
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
 
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+//        File ficheroXML;
+//        ficheroXML = dialogoSeleccionTipoRecurso();
+//        if(getSax.abrir_XML_DOM(ficheroXML) == 0){
+//           
+//        }
+//        else{
+//                        
+//                    }
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -252,6 +274,7 @@ private File dialogoSeleccionTipoRecurso(){
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextFieldAutor;
     private javax.swing.JTextField jTextFieldLibro;
