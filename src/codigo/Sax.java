@@ -19,9 +19,9 @@ public class Sax {
     public int abrir_XML_SAX(File fichero){                 //Se crea un objeto SAXParser para interpretar el documento XML.
         try{
             SAXParserFactory factory = SAXParserFactory.newInstance();
-            parser = factory.newSAXParser();
-            sh = new ManejadorSAX();
-            ficheroXML = fichero;
+//            parser = factory.newSAXParser();
+//            sh = new ManejadorSAX();
+//            ficheroXML = fichero;
             return 0;
         }
         catch(Exception e){
@@ -41,7 +41,8 @@ class ManejadorSAX extends DefaultHandler{
     
     public void startElement(String uri, String localName, String qName, Attributes atts)throws SAXException{
     if(qName.equals("Libro")){
-        cadena_resultado=cadena_resultado + "\nPublicado en:" + atts.getValue(atts.getQName(0))+ "\n";
+//        cadena_resultado="\n"+ cadena_resultado + "\nPublicado en:" + atts.getValue(atts.getQName(0));
+        ultimoelement=1;
     }    
     }
 }
