@@ -16,6 +16,7 @@ import javax.swing.JOptionPane;
 public class Formulario extends javax.swing.JFrame {
         Dom getDom;
         Sax getSax;
+        JaxB getJaxB;
     /**
      * Creates new form Formulario
      */
@@ -23,6 +24,7 @@ public class Formulario extends javax.swing.JFrame {
         initComponents();
         getDom = new Dom();
         getSax = new Sax();
+        getJaxB = new JaxB();
     }
 private File dialogoSeleccionTipoRecurso(){
     File fichero=null;
@@ -61,6 +63,7 @@ private File dialogoSeleccionTipoRecurso(){
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
 
         javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
         jDialog1.getContentPane().setLayout(jDialog1Layout);
@@ -94,7 +97,7 @@ private File dialogoSeleccionTipoRecurso(){
             }
         });
 
-        jButton2.setText("Mostrar Jaxb");
+        jButton2.setText("Mostrar JaxB");
 
         jButton3.setText("Mostrar SAX");
 
@@ -132,6 +135,14 @@ private File dialogoSeleccionTipoRecurso(){
             }
         });
         jMenu1.add(jMenuItem2);
+
+        jMenuItem3.setText("Abrir JaxB");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem3);
 
         jMenuBar1.add(jMenu1);
 
@@ -227,6 +238,10 @@ private File dialogoSeleccionTipoRecurso(){
 //                    }
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -275,6 +290,7 @@ private File dialogoSeleccionTipoRecurso(){
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextFieldAutor;
     private javax.swing.JTextField jTextFieldLibro;
