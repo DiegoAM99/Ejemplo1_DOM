@@ -228,18 +228,25 @@ private File dialogoSeleccionTipoRecurso(){
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-//        File ficheroXML;
+        File ficheroXML;
+        ficheroXML = dialogoSeleccionTipoRecurso();
+        if(getSax.abrir_XML_SAX(ficheroXML) == 0){
+           
+        }
+        else{
+                        
+                    }
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+//                File ficheroXML;
 //        ficheroXML = dialogoSeleccionTipoRecurso();
-//        if(getSax.abrir_XML_DOM(ficheroXML) == 0){
+//        if(getJaxB.abrir_XML_JAXB(ficheroXML) == 0){
 //           
 //        }
 //        else{
 //                        
 //                    }
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
-
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     /**
