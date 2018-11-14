@@ -5,22 +5,25 @@
  */
 package codigo;
 
-import java.awt.List;
+import java.util.List;
 import java.io.File;
 import javax.xml.bind.JAXBContext;
+import javax.xml.bind.Unmarshaller;
+import paqueteLibros.Libros;
 
 /**
  *
  * @author Diego Álvarez
  */
 public class JaxB {
+    Libros misLibros;
     public int abrir_XML_JAXB(File fichero, Libros misLibros){
         JAXBContext contexto;
         try{
             //Crea una instancia JAXB
             contexto = JAXBContext.newInstance(Libros.class);
             //Crea un objeto Unmarsheller.
-            Unmarsheller u = contexto.createUnmarshaller();
+            Unmarshaller u = contexto.createUnmarshaller();
             //Deserializa (unmarshal) el fichero
             misLibros = (Libros) u.unmarshal(fichero);
             return 0;
@@ -35,10 +38,14 @@ public class JaxB {
         String cadena_resultado="";
         
         //Crea una lista con objetos de tipo libro
-        List<Libros.Libro>|Libros=misLibros.getLibro();
+        List<Libros.Libro> Libros = misLibros.getLibro();
         //Recorre la lista para sacar los valores
-        for(int=0;i<|Libros.size();i++){
-        
+        for(int i=0;i < Libros.size();i++){
+        cadena_resultado = cadena_resultado+"\n"+ "Publicado en:" + Libros.get(i).getPublicadoEn();
+        cadena_resultado = cadena_resultado + "\n"+ "El Titulo es" +  Libros.get(i).getTitulo();
+        cadena_resultado = cadena_resultado + "\n"+ "El Autor es" +  Libros.get(i).getAutor();
+        cadena_resultado = cadena_resultado +"\n----------------------";
     }
+        return cadena_resultado;
     }
 }
