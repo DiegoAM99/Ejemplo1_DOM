@@ -17,7 +17,7 @@ import paqueteLibros.Libros;
  */
 public class JaxB {
     Libros misLibros;
-    public int abrir_XML_JAXB(File fichero, Libros misLibros){
+    public int abrir_XML_JAXB(File fichero){
         JAXBContext contexto;
         try{
             //Crea una instancia JAXB
