@@ -57,10 +57,10 @@ class ManejadorSAX extends DefaultHandler{
                 ultimoelement = 1;
             } else if (qName.equals("Titulo")) {
                 ultimoelement = 2;
-                cadena_resultado = cadena_resultado.trim() + "\nEl tÃ­tulo es: ";
+                cadena_resultado = cadena_resultado.trim() + "\n"+ "El tÃ­tulo es: ";
             } else if (qName.equals("Autor")) {
                 ultimoelement = 3;
-                cadena_resultado = cadena_resultado.trim() + "\nEl autor es: ";
+                cadena_resultado = cadena_resultado.trim() + "\n"+"El autor es: ";
             }
     }
      public void endElement(String uri, String localName, String qName)

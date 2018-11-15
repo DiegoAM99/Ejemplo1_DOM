@@ -22,6 +22,9 @@ import org.w3c.dom.NodeList;
  */
 public class Dom {
     Document doc = null;
+    int conteo;
+    String salida;
+    NodeList nodelist;
     public int abrir_XML_DOM (File fichero){                                        //doc representa al arbol dom
     
         try{
@@ -48,17 +51,16 @@ public class Dom {
         NodeList nodelist=raiz.getChildNodes();                                 //obtiene una lista de nodos con todos los nodos hjo del raiz
         for(int i=0; i<nodelist.getLength(); i++){                              //Procesa los nodos hijo
             node = nodelist.item(i);
-            
             if (node.getNodeType()==Node.ELEMENT_NODE){
                 datos_nodo = procesarLibro(node);                               //Es un nodo libro
-                    salida = salida + "\n" + "Publicado en:" +datos_nodo[0];
+                    salida = salida + "\n" + "Publicado en:"+ datos_nodo[0];
                     salida = salida + "\n" + "El autor es:" +datos_nodo[2];
-                    salida = salida + "\n" + "El titulo es:" +datos_nodo[1];
+                    salida = salida + "\n" + "El titulo es:"+datos_nodo[1];
                     salida = salida + "\n-----------"; 
             }
+            
         }
         return salida;
-        
     }
     
     
@@ -108,7 +110,10 @@ public class Dom {
             
             return 0;    
         }
-        catch(Exception e){e.printStackTrace(); return-1;}
+        catch (Exception e) {
+            e.printStackTrace();
+            return -1;
+        }
     }
     
     
@@ -116,9 +121,10 @@ public class Dom {
     
     
     
-    public int guardarDOMcomoFILE(){
+    public int guardarDOMcomoFILE(String salida){
     try{
-        File archivo_xml = new File("salida.xml");                              //Crea un fichero llamado salida.xml
+        //Crea un fichero llamado salida.xml
+        File archivo_xml = new File(salida);                              //Crea un fichero llamado salida.xml
         OutputFormat format =new OutputFormat(doc);                             //Especifica el formato de salida
         format.setIndenting(true);                                              //Especifica que la salida este  indentada
         XMLSerializer serializer =new XMLSerializer(new FileOutputStream        //Escribe el contenido e el file    
@@ -132,5 +138,25 @@ public class Dom {
         return-1;
     }
     
+    }
+    
+    public void modificarDOM( String oldT, String newT) {
+        String util = "Titulo";
+        Node node;
+        //Inicializo el contador a 0 para que siempre este vacio al ejecutarlo
+        conteo = 0;
+        //Inicializo un nodelist que almacena todos los nodos existentes que coincidan con el titulo que le paso
+        NodeList listaN = doc.getElementsByTagName(util);        
+        //for que recorre el listaN
+        for (int i = 0; i < listaN.getLength(); i++) {
+            node = listaN.item(i);
+        //Si los valores de titulo y node se igualan entra en el if
+            if (node.getTextContent().equalsIgnoreCase(oldT)) {
+        //Paso al node el nuevo titulo
+                node.setTextContent(newT);
+        //Sumo 1 en contador para indentificar cambio
+                conteo++;
+            }
+        }
     }
 }

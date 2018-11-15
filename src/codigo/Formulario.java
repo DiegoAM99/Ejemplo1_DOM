@@ -262,7 +262,7 @@ private File dialogoSeleccionTipoRecurso(){
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-            File ficheroXML;
+        File ficheroXML;
         ficheroXML = dialogoSeleccionTipoRecurso();
         if(getJaxB.abrir_XML_JAXB(ficheroXML) == 0){
            jButton1.setEnabled(true);
