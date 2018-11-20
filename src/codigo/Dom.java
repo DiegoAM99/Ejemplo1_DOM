@@ -21,12 +21,12 @@ import org.w3c.dom.NodeList;
  * @author Diego Álvarez
  */
 public class Dom {
-    Document doc = null;
+    Document doc;
     int conteo;
     String salida;
     NodeList nodelist;
     public int abrir_XML_DOM (File fichero){                                        //doc representa al arbol dom
-    
+        doc = null;
         try{
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();  //Se crea un objeto DocumentBuider Factory
             factory.setIgnoringElementContentWhitespace(true);                      //Ignora los espacios en blanco
@@ -48,14 +48,14 @@ public class Dom {
         Node node;
         
         Node raiz=doc.getFirstChild();                                          //obtiene el primer nodo del DOM(primer hijo)
-        NodeList nodelist=raiz.getChildNodes();                                 //obtiene una lista de nodos con todos los nodos hjo del raiz
+        NodeList nodelist=raiz.getChildNodes();                                 //obtiene una lista de nodos con todos los nodos hijo del raiz
         for(int i=0; i<nodelist.getLength(); i++){                              //Procesa los nodos hijo
             node = nodelist.item(i);
             if (node.getNodeType()==Node.ELEMENT_NODE){
                 datos_nodo = procesarLibro(node);                               //Es un nodo libro
                     salida = salida + "\n" + "Publicado en:"+ datos_nodo[0];
-                    salida = salida + "\n" + "El autor es:" +datos_nodo[2];
-                    salida = salida + "\n" + "El titulo es:"+datos_nodo[1];
+                    salida = salida + "\n" + "El autor es:" +datos_nodo[1];
+                    salida = salida + "\n" + "El titulo es:"+datos_nodo[2];
                     salida = salida + "\n-----------"; 
             }
             
@@ -73,10 +73,10 @@ public class Dom {
         datos[0]=n.getAttributes().item(0).getNodeValue();                      //obtiene el valor del primer atributo del nodo(uno en este ejempo)
         NodeList nodos = n.getChildNodes();                                     //obtiene los hijos del libro (titulo y autor) 
         
-        for (int i=0; i<nodos.getLength(); i++){
+        for (int i=0; i < nodos.getLength(); i++){
             ntemp =nodos.item(i);
             
-            if(ntemp.getNodeType()==Node.ELEMENT_NODE){
+            if(ntemp.getNodeType() == Node.ELEMENT_NODE){
                 datos[contador]= ntemp.getChildNodes().item(0).getNodeValue();  //IMPORTANTE para obtener el texto con el titulo y el autor se accede al nodo TEXT hijo de ntemp y se saca su valor
                 contador++;
                     }

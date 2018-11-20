@@ -23,6 +23,7 @@ public class Formulario extends javax.swing.JFrame {
      */
     public Formulario() {
         initComponents();
+        File selectedFile;
         getDom = new Dom();
         getSax = new Sax();
         getJaxB = new JaxB();
@@ -50,17 +51,21 @@ private File dialogoSeleccionTipoRecurso(){
 
         jDialog1 = new javax.swing.JDialog();
         jFileChooser1 = new javax.swing.JFileChooser();
-        jTextField1 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
         jTextFieldTitulo = new javax.swing.JTextField();
         jTextFieldAutor = new javax.swing.JTextField();
-        jTextFieldLibro = new javax.swing.JTextField();
+        jTextFieldPublicado = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
+        jTextFieldTituloAnterior = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jTextFieldTituloNuevo = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -86,12 +91,6 @@ private File dialogoSeleccionTipoRecurso(){
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
-            }
-        });
-
         jButton1.setText("Mostrar DOM");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -114,6 +113,16 @@ private File dialogoSeleccionTipoRecurso(){
         });
 
         jButton5.setText("Modificar");
+        jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jButton5MousePressed(evt);
+            }
+        });
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         jButton6.setText("Añadir");
         jButton6.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -122,15 +131,26 @@ private File dialogoSeleccionTipoRecurso(){
             }
         });
 
-        jButton7.setText("Guardar DOM");
-
         jTextFieldTitulo.setText("Titulo");
 
         jTextFieldAutor.setText("Autor");
 
-        jTextFieldLibro.setText("Libro");
+        jTextFieldPublicado.setText("Publicado en");
+        jTextFieldPublicado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldPublicadoActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Selecciona un archivo");
+
+        jLabel2.setText("Titulo Anterior");
+
+        jLabel3.setText("Titulo Nuevo");
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane1.setViewportView(jTextArea1);
 
         jMenu1.setText("File");
         jMenu1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -177,28 +197,36 @@ private File dialogoSeleccionTipoRecurso(){
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton7))
-                    .addComponent(jButton3)
+                        .addComponent(jButton3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton2))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(26, 26, 26)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextFieldTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextFieldAutor, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextFieldLibro, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGap(7, 7, 7)
                                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(26, 26, 26)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(39, 39, 39)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButton6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jButton5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addContainerGap(63, Short.MAX_VALUE))
+                                    .addComponent(jTextFieldPublicado, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextFieldAutor, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextFieldTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(21, 21, 21)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel2)
+                                        .addGap(9, 9, 9)
+                                        .addComponent(jTextFieldTituloAnterior, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel3)
+                                        .addGap(18, 18, 18)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jTextFieldTituloNuevo))))))))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -207,27 +235,34 @@ private File dialogoSeleccionTipoRecurso(){
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2)
-                    .addComponent(jButton7))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton3)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButton3))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(2, 2, 2)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(17, 17, 17)
-                        .addComponent(jButton5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(50, 50, 50)
                         .addComponent(jTextFieldTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTextFieldAutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(1, 1, 1)
+                        .addComponent(jTextFieldPublicado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldLibro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(29, Short.MAX_VALUE))
+                        .addComponent(jButton6)
+                        .addGap(80, 80, 80)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTextFieldTituloAnterior, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(jTextFieldTituloNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(25, 25, 25)
+                        .addComponent(jButton5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(29, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(31, 31, 31)
+                        .addComponent(jScrollPane1)
+                        .addContainerGap())))
         );
 
         pack();
@@ -251,12 +286,8 @@ private File dialogoSeleccionTipoRecurso(){
     }//GEN-LAST:event_jMenuItem1MousePressed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        jTextField1.setText(getDom.recorrerDOMyMostrar(getDom.doc));
+        jTextArea1.setText(getDom.recorrerDOMyMostrar(getDom.doc));
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         File ficheroXML;
@@ -283,25 +314,53 @@ private File dialogoSeleccionTipoRecurso(){
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jButton3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MousePressed
-        jTextField1.setText(getSax.recorrerSAX());
+        jTextArea1.setText(getSax.recorrerSAX());
     }//GEN-LAST:event_jButton3MousePressed
 
     private void jButton2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MousePressed
-        jTextField1.setText(getJaxB.recorrerJAXByMostrar());
+        jTextArea1.setText(getJaxB.recorrerJAXByMostrar());
     }//GEN-LAST:event_jButton2MousePressed
 
     private void jButton6MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MousePressed
         //No dejara realizar la accion si algun campo esta vacio.
-        if (jTextFieldAutor.getText().equals("") || jTextFieldLibro.getText().equals("") || jTextFieldTitulo.getText().equals("")){
+        if (jTextFieldAutor.getText().equals("") || jTextFieldPublicado.getText().equals("") || jTextFieldTitulo.getText().equals("")){
             jLabel1.setText("Campos incompletos.");
         }
         //Con todos los campos rellenos, accedera a añadir un nuevo libro.
         else{
-            getDom.añadirDOM(getDom.doc, jTextFieldAutor.getText(), jTextFieldLibro.getText(), jTextFieldTitulo.getText());
-            jTextField1.setText(getDom.recorrerDOMyMostrar(getDom.doc));
+            getDom.añadirDOM(getDom.doc, jTextFieldAutor.getText(), jTextFieldPublicado.getText(), jTextFieldTitulo.getText());
+            jTextArea1.setText(getDom.recorrerDOMyMostrar(getDom.doc));
             jLabel1.setText("Nuevo libro añadido correctamente.");
         }
     }//GEN-LAST:event_jButton6MousePressed
+
+    private void jTextFieldPublicadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldPublicadoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldPublicadoActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton5MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MousePressed
+        if (jTextFieldTituloAnterior.getText().equals("") || jTextFieldTituloNuevo.getText().equals("")){
+            jLabel1.setText("Campos incompletos.");
+         } 
+         else{
+            //Paso como parametro lo que escriba en los respectivos jTextField respecto al titulo viejo y al nuevo
+            getDom.modificarDOM(jTextFieldTituloAnterior.getText(), jTextFieldTituloNuevo.getText());
+            //Le paso al jTextArea la modificacion
+            jTextArea1.setText(getDom.recorrerDOMyMostrar(getDom.doc));
+            //Utilizo el contador para identificar los cambios, y en el caso de que existan 
+            //cambios los guardo.
+          if (getDom.conteo == 1){
+                getDom.guardarDOMcomoFILE("modificacion.xml");
+          }
+          else if (getDom.conteo > 1){
+                getDom.guardarDOMcomoFILE("modificacion.xml");
+          }
+        }
+    }//GEN-LAST:event_jButton5MousePressed
 
     /**
      * @param args the command line arguments
@@ -344,18 +403,22 @@ private File dialogoSeleccionTipoRecurso(){
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
     private javax.swing.JDialog jDialog1;
     private javax.swing.JFileChooser jFileChooser1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextFieldAutor;
-    private javax.swing.JTextField jTextFieldLibro;
+    private javax.swing.JTextField jTextFieldPublicado;
     private javax.swing.JTextField jTextFieldTitulo;
+    private javax.swing.JTextField jTextFieldTituloAnterior;
+    private javax.swing.JTextField jTextFieldTituloNuevo;
     // End of variables declaration//GEN-END:variables
 }
