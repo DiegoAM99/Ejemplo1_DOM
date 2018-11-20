@@ -116,6 +116,11 @@ private File dialogoSeleccionTipoRecurso(){
         jButton5.setText("Modificar");
 
         jButton6.setText("Añadir");
+        jButton6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jButton6MousePressed(evt);
+            }
+        });
 
         jButton7.setText("Guardar DOM");
 
@@ -241,6 +246,8 @@ private File dialogoSeleccionTipoRecurso(){
                 jButton5.setEnabled(true);
                 jLabel1.setText("Carga de DOM completada.");
         }
+        jButton2.setEnabled(false);
+        jButton3.setEnabled(false);
     }//GEN-LAST:event_jMenuItem1MousePressed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -259,6 +266,8 @@ private File dialogoSeleccionTipoRecurso(){
                 jButton3.setEnabled(true); 
                 jLabel1.setText("Carga de SAX completada.");
         }
+        jButton1.setEnabled(false);
+        jButton2.setEnabled(false);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
@@ -269,6 +278,8 @@ private File dialogoSeleccionTipoRecurso(){
                 jButton3.setEnabled(true); 
                 jLabel1.setText("Carga de JAXB completada.");
         }
+        jButton1.setEnabled(false);
+        jButton3.setEnabled(false);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jButton3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MousePressed
@@ -278,6 +289,19 @@ private File dialogoSeleccionTipoRecurso(){
     private void jButton2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MousePressed
         jTextField1.setText(getJaxB.recorrerJAXByMostrar());
     }//GEN-LAST:event_jButton2MousePressed
+
+    private void jButton6MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MousePressed
+        //No dejara realizar la accion si algun campo esta vacio.
+        if (jTextFieldAutor.getText().equals("") || jTextFieldLibro.getText().equals("") || jTextFieldTitulo.getText().equals("")){
+            jLabel1.setText("Campos incompletos.");
+        }
+        //Con todos los campos rellenos, accedera a añadir un nuevo libro.
+        else{
+            getDom.añadirDOM(getDom.doc, jTextFieldAutor.getText(), jTextFieldLibro.getText(), jTextFieldTitulo.getText());
+            jTextField1.setText(getDom.recorrerDOMyMostrar(getDom.doc));
+            jLabel1.setText("Nuevo libro añadido correctamente.");
+        }
+    }//GEN-LAST:event_jButton6MousePressed
 
     /**
      * @param args the command line arguments
